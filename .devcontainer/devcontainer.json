@@ -1,0 +1,26 @@
+{
+
+    "name": "TerraformDevelopment",
+
+    "dockerFile": "Dockerfile",
+
+  
+
+    "settings": {
+
+      "terminal.integrated.shell.linux": "/bin/bash"
+
+    },
+
+    "extensions": ["hashicorp.terraform"],
+
+  
+
+    "postCreateCommand": "terraform init",
+
+
+
+    "mounts": [
+      "source=${localEnv:HOME}/.azure,target=/root/.azure,type=bind,consistency=cached",    ]
+
+  }
