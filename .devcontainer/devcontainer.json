@@ -14,10 +14,6 @@
 
     "extensions": ["hashicorp.terraform"],
 
-  
-
-    "postCreateCommand": "terraform init",
-
 
 
     "mounts": [

@@ -38,3 +38,9 @@ RUN wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsof
 # Install Terragrunt
 RUN curl -LsS "https://github.com/gruntwork-io/terragrunt/releases/download/v${TG_VERSION}/terragrunt_linux_amd64" -o /usr/local/bin/terragrunt && \
   chmod +x /usr/local/bin/terragrunt
+
+
+# Install Golang
+RUN  curl -LO https://go.dev/dl/go1.18.2.linux-amd64.tar.gz \
+    && tar -C /usr/local -xzf go1.18.2.linux-amd64.tar.gz \
+    && export PATH=$PATH:/usr/local/go/bin
