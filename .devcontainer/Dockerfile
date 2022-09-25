@@ -11,10 +11,11 @@ RUN apt-get update \
     jq \
     git \
     wget \
+    golang \
     unzip \
+    pip \
     iputils-ping \
     netcat \
-    golang \
     vim
 
 
@@ -39,8 +40,10 @@ RUN wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsof
 RUN curl -LsS "https://github.com/gruntwork-io/terragrunt/releases/download/v${TG_VERSION}/terragrunt_linux_amd64" -o /usr/local/bin/terragrunt && \
   chmod +x /usr/local/bin/terragrunt
 
+#Install Pre-Commit
+RUN pip install pre-commit
 
-# Install Golang
-RUN  curl -LO https://go.dev/dl/go1.18.2.linux-amd64.tar.gz \
-    && tar -C /usr/local -xzf go1.18.2.linux-amd64.tar.gz \
-    && export PATH=$PATH:/usr/local/go/bin
+#Install tflint
+RUN curl -L "$(curl -Ls https://api.github.com/repos/terraform-linters/tflint/releases/latest | grep -o -E "https://.+?_linux_amd64.zip")" -o tflint.zip \
+    && unzip tflint.zip && rm tflint.zip \
+    && mv tflint /usr/local/bin/
